@@ -1,0 +1,29 @@
+{
+  "name": "pokedex-ts",
+  "version": "1.0.0",
+  "description": "Pokedex in TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest --run",
+    "build": "npx tsc",
+    "start": "node dist/main.js",
+    "dev": "npx tsc && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Torvec/pokedex-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Torvec/pokedex-ts/issues"
+  },
+  "homepage": "https://github.com/Torvec/pokedex-ts#readme",
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

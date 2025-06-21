@@ -1,2 +1,2 @@
-# pokedex-ts
+# Pokedex (TypeScript)
 Pokedex in TypeScript
