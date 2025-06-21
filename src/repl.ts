@@ -1,29 +1,47 @@
 import { createInterface } from "readline";
+import { getCommands } from "./commands.js";
 
 export function cleanInput(input: string): string[] {
-  return input.toLowerCase().trim().split(/\s+/);
+  return input
+    .toLowerCase()
+    .trim()
+    .split(" ")
+    .filter((word) => word !== "");
 }
 
-export function startREPL(): void {
+export function startREPL() {
   const rl = createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: "Pokedex > ",
+    prompt: "pokedex > ",
   });
 
   rl.prompt();
 
-  rl.on("line", (line: string) => {
-    if (line.trim() === "") {
+  rl.on("line", async (input) => {
+    const words = cleanInput(input);
+    if (words.length === 0) {
       rl.prompt();
       return;
-    } else {
-      const result = cleanInput(line);
-      console.log("Your command was: " + result[0]);
+    }
+
+    const commandName = words[0];
+    const commands = getCommands();
+    const cmd = commands[commandName];
+    if (!cmd) {
+      console.log(
+        `Unknown Command: "${commandName}". Type "help" for a list of commands.`
+      );
+      rl.prompt;
+      return;
+    }
+
+    try {
+      cmd.callback(commands);
+    } catch (err) {
+      console.log(err);
     }
 
     rl.prompt();
   });
-
-  rl.prompt();
 }
